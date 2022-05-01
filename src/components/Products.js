@@ -4,15 +4,15 @@ import Product from './Product'
 class Products extends Component {
 
     render(){
-        const { products, addToCart } = this.props
+        const { products, addToCart} = this.props
         
         return(
             <div className='flex flex-wrap'>
                 {products.map((product, index) => 
                     <Product
-                        addToCart={() => addToCart(product)}
-                        product={product}
                         key={index}
+                        product={product}
+                        addToCart={addToCart}
                     />
                 )}
             </div>

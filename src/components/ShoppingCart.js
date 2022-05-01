@@ -6,7 +6,13 @@ class ShoppingCart extends Component {
 
     render(){
 
-        const { cart, visible_cart, showCart } = this.props
+        const { 
+            cart, 
+            visible_cart, 
+            showCart, 
+            emptyCart, 
+        } = this.props
+        
         const quantity = cart.reduce((acc, el) => acc + el.quantity, 0)
 
         return(
@@ -17,7 +23,7 @@ class ShoppingCart extends Component {
                         : null
                     }
                 </span>
-                <button onClick={showCart}>
+                <button onClick={showCart} className='hover:shadow hover:shadow-gray-600 bg-orange-500 p-2 rounded-full'>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         className="h-8 w-8 text-slate-100" 
@@ -33,7 +39,14 @@ class ShoppingCart extends Component {
                             />
                     </svg>
                 </button>
-                { visible_cart ? <CartDetails cart={cart} /> : null }
+                { 
+                    visible_cart 
+                    ?   <CartDetails 
+                            cart={cart} 
+                            emptyCart={emptyCart} 
+                        />
+                    :   null 
+                }
             </div>      
         )
     }

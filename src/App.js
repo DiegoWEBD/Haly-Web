@@ -87,6 +87,13 @@ class App extends Component {
     })
   }
 
+  emptyCart = () => {
+
+    this.setState({
+      cart: []
+    })
+  }
+
   render(){
 
     const { visible_cart } = this.state
@@ -97,12 +104,13 @@ class App extends Component {
           cart={this.state.cart} 
           visible_cart={visible_cart}
           showCart={this.showCart}
+          emptyCart={this.emptyCart}
         />
         
         <Layout>
           <Products
-            addToCart={this.addToCart} 
             products={this.state.products} 
+            addToCart={this.addToCart}
           />
         </Layout>   
       </div>

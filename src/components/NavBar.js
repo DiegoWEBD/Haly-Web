@@ -6,7 +6,12 @@ class NavBar extends Component {
 
     render(){
 
-        const { cart, visible_cart, showCart } = this.props
+        const { 
+            cart, 
+            visible_cart, 
+            showCart, 
+            emptyCart, 
+        } = this.props
 
         return(
             <nav className='sticky top-1 bg-amber-500 shadow-lg shadow-gray-500 rounded-xl flex items-center justify-between py-2 px-6 m-1'>
@@ -15,6 +20,7 @@ class NavBar extends Component {
                     cart={cart}
                     visible_cart={visible_cart}
                     showCart={showCart}
+                    emptyCart={emptyCart}
                 />
             </nav>
         )

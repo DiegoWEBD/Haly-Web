@@ -10,40 +10,48 @@ class App extends Component {
       {
         name: 'Dulce 1',
         description: 'Descripcion 1 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 3990
+        price: 3990,
+        image_filename: 'dulce_1.jpg'
       },
       {
         name: 'Dulce 2',
         description: 'Descripcion 2 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 2280
+        price: 2280,
+        image_filename: 'dulce_2.jpg'
       },
       {
         name: 'Dulce 3',
         description: 'Descripcion 3 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 1500
+        price: 1500,
+        image_filename: 'dulce_3.jpg'
       },
       {
         name: 'Dulce 4',
         description: 'Descripcion 4 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 4000
+        price: 4000,
+        image_filename: 'dulce_4.jpg'
       },
       {
         name: 'Dulce 5',
         description: 'Descripcion 5 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 2000
+        price: 2000,
+        image_filename: 'dulce_5.jpg'
       },
       {
         name: 'Dulce 6',
         description: 'Descripcion 6 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 2970
+        price: 2970,
+        image_filename: 'dulce_6.jpg'
       },
       {
         name: 'Dulce 7',
         description: 'Descripcion 7 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 4990
+        price: 4990,
+        image_filename: 'dulce_7.jpg'
       },
     ],
-    cart: []
+    cart: [],
+    visible_cart: false,
   }
 
   addToCart = (product) => {
@@ -72,11 +80,24 @@ class App extends Component {
     })
   }
 
+  showCart = () => {
+    
+    this.setState({
+      visible_cart: !this.state.visible_cart
+    })
+  }
+
   render(){
+
+    const { visible_cart } = this.state
 
     return(
       <div className='bg-slate-50 min-h-screen'>
-        <NavBar cart={this.state.cart} />
+        <NavBar 
+          cart={this.state.cart} 
+          visible_cart={visible_cart}
+          showCart={this.showCart}
+        />
         
         <Layout>
           <Products

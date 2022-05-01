@@ -1,11 +1,12 @@
 import { Component } from 'react'
 import BubbleAlert from './BubbleAlert'
+import CartDetails from './CartDetails'
 
 class ShoppingCart extends Component {
 
     render(){
 
-        const { cart } = this.props
+        const { cart, visible_cart, showCart } = this.props
         const quantity = cart.reduce((acc, el) => acc + el.quantity, 0)
 
         return(
@@ -16,7 +17,7 @@ class ShoppingCart extends Component {
                         : null
                     }
                 </span>
-                <button>
+                <button onClick={showCart}>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         className="h-8 w-8 text-slate-100" 
@@ -32,6 +33,7 @@ class ShoppingCart extends Component {
                             />
                     </svg>
                 </button>
+                { visible_cart ? <CartDetails cart={cart} /> : null }
             </div>      
         )
     }

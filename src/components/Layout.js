@@ -5,7 +5,7 @@ class Layout extends Component {
     render({ children } = this.props){
 
         return(
-            <div className='mx-4 px-3 mt-8'>
+            <div className='mx-4 px-3 mt-8 pt-8'>
                 {children}
             </div>
         )

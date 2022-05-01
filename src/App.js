@@ -76,7 +76,7 @@ class App extends Component {
 
     return(
       <div className='bg-slate-50 min-h-screen'>
-        <NavBar />
+        <NavBar cart={this.state.cart} />
         
         <Layout>
           <Products

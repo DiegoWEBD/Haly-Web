@@ -9,7 +9,7 @@ class Logo extends Component {
                 <img 
                     alt='Haly' 
                     src={require('../img/logos/main_logo.jpg')} 
-                    className='h-14 rounded-full'
+                    className='h-14 rounded-full shadow-md shadow-gray-700'
                 />
             </a>
         )

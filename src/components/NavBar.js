@@ -6,10 +6,12 @@ class NavBar extends Component {
 
     render(){
 
+        const { cart } = this.props
+
         return(
-            <div className='bg-orange-500 rounded-xl border-2 border-amber-50 flex justify-between py-2 px-6 text-slate-100'>
+            <div className='bg-amber-500 shadow-lg shadow-gray-500 rounded-xl flex items-center justify-between py-2 px-6 m-1'>
                 <Logo />
-                <ShoppingCart />
+                <ShoppingCart cart={cart} />
             </div>
         )
     }

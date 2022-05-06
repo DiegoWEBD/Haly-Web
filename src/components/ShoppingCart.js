@@ -23,10 +23,10 @@ class ShoppingCart extends Component {
                         : null
                     }
                 </span>
-                <button onClick={showCart} className='hover:shadow hover:shadow-gray-600 bg-orange-500 p-2 rounded-full'>
+                <button onClick={showCart} className='border-2 border-indigo-700 p-2 rounded-full'>
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-8 w-8 text-slate-100" 
+                        className="h-8 w-8 text-slate-50 hover:text-slate-300" 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor" 

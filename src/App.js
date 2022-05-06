@@ -2,6 +2,7 @@ import { Component } from 'react'
 import NavBar from './components/NavBar'
 import Products from './components/Products'
 import Layout from './components/Layout'
+import NewSweetCard from './components/NewSweetCard'
 
 class App extends Component {
 
@@ -94,12 +95,18 @@ class App extends Component {
     })
   }
 
+  addNewSweet = (sweet) => {
+    this.setState({
+      products: [sweet, ...this.state.products]
+    })
+  }
+
   render(){
 
     const { visible_cart } = this.state
 
     return(
-      <div className='bg-slate-50 min-h-screen'>
+      <div className='bg-neutral-300 min-h-screen'>
         <NavBar 
           cart={this.state.cart} 
           visible_cart={visible_cart}
@@ -108,6 +115,9 @@ class App extends Component {
         />
         
         <Layout>
+          <NewSweetCard
+            addNewSweet={this.addNewSweet}
+          />
           <Products
             products={this.state.products} 
             addToCart={this.addToCart}

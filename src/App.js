@@ -1,72 +1,39 @@
 import { Component } from 'react'
 import NavBar from './components/NavBar'
-import Products from './components/Products'
+import Sweets from './components/Sweets'
 import Layout from './components/Layout'
 import NewSweetCard from './components/NewSweetCard'
+import axios from 'axios'
 
 class App extends Component {
 
   state = {
-    products: [
-      {
-        name: 'Dulce 1',
-        description: 'Descripcion 1 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 3990,
-        image_filename: 'dulce_1.jpg'
-      },
-      {
-        name: 'Dulce 2',
-        description: 'Descripcion 2 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 2280,
-        image_filename: 'dulce_2.jpg'
-      },
-      {
-        name: 'Dulce 3',
-        description: 'Descripcion 3 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 1500,
-        image_filename: 'dulce_3.jpg'
-      },
-      {
-        name: 'Dulce 4',
-        description: 'Descripcion 4 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 4000,
-        image_filename: 'dulce_4.jpg'
-      },
-      {
-        name: 'Dulce 5',
-        description: 'Descripcion 5 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 2000,
-        image_filename: 'dulce_5.jpg'
-      },
-      {
-        name: 'Dulce 6',
-        description: 'Descripcion 6 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 2970,
-        image_filename: 'dulce_6.jpg'
-      },
-      {
-        name: 'Dulce 7',
-        description: 'Descripcion 7 ajsldkjalskdjlaksdjlaksdjlaksjdkajshdkajsdhkajs',
-        price: 4990,
-        image_filename: 'dulce_7.jpg'
-      },
-    ],
+    sweets: [],
     cart: [],
     visible_cart: false,
   }
 
-  addToCart = (product) => {
+  getSweets = async () => {
+
+    const response = await fetch('http://halyweb-api.xyz/sweets')
+    const data = await response.json()
+    this.setState({
+      sweets: data
+    })
+  }
+
+  addToCart = (sweets) => {
  
     const { cart } = this.state
 
-    if(cart.find(p => p.name === product.name)){
+    if(cart.find(s => s.name === sweets.name)){
     
-      const new_cart = cart.map(p => p.name === product.name 
+      const new_cart = cart.map(s => s.name === sweets.name 
         ? ({
-          ...p,
-          quantity: p.quantity + 1
+          ...s,
+          quantity: s.quantity + 1
         })
-        : p)
+        : s)
       
       return this.setState({
         cart: new_cart
@@ -75,7 +42,7 @@ class App extends Component {
 
     return this.setState({
       cart: this.state.cart.concat({
-        ...product, 
+        ...sweets, 
         quantity: 1
       })
     })
@@ -95,9 +62,16 @@ class App extends Component {
     })
   }
 
-  addNewSweet = (sweet) => {
+  addNewSweet = async (sweet) => {
+
+    const { image, ...props } = sweet
+    const new_sweet = {
+      ...props,
+      image_filename: 'dulce_6.jpg'
+    }
+
     this.setState({
-      products: [sweet, ...this.state.products]
+      sweets: [new_sweet, ...this.state.sweets]
     })
   }
 
@@ -117,10 +91,12 @@ class App extends Component {
         <Layout>
           <NewSweetCard
             addNewSweet={this.addNewSweet}
+            sweets={this.state.sweets}
           />
-          <Products
-            products={this.state.products} 
+          <Sweets
+            sweets={this.state.sweets} 
             addToCart={this.addToCart}
+            getSweets={this.getSweets}
           />
         </Layout>   
       </div>

@@ -8,8 +8,8 @@ class Logo extends Component {
             <a href='/'>
                 <img 
                     alt='Haly' 
-                    src={require('../img/logos/main_logo.jpg')} 
-                    className='h-14 rounded-full shadow-md shadow-gray-700'
+                    src={require('../img/logos/main_logo.png')} 
+                    className='w-24'
                 />
             </a>
         )
